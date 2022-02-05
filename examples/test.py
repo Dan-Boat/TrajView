@@ -28,9 +28,9 @@ exp_name_AW200E100 = "a009"
 exp_name_AW200E0 = "a010"
 exp_name_AW200E200 = "t017"
 
-loc_1 = "Lyon"
-lat_1 = 45.81
-lon_1 = 4.82
+loc_1 = "Bologna"
+lat_1 = 44.49
+lon_1 = 11.38
 varname = "p"
 
 AW100E100_path_june = os.path.join(main_path, exp_name_AW100E100, "June", "Trace", loc_1)
@@ -171,7 +171,7 @@ AW200E0_August_Trajs = trajs.concatenate(trajs_add)
 
 plt.rcParams.update({'font.size': 18, "font.weight":"semibold", "lines.markersize":18})
 
-path_to_store = os.path.join("/home/dboateng/Model_output_pst/plots/Trajs", loc_1)
+path_to_store = os.path.join("/home/dboateng/Model_output_pst/", "plots")
 
 levels = np.linspace(700, 900, 22)
 cmap = "Spectral"
@@ -189,7 +189,7 @@ cbar_ax.set_yticklabels([])
 cbar_ax.tick_params(size=0)
 
 #CTL
-m = CartoFigure(ax=ax1, projection=projection, extent=[-40,20,30,65], resolution="50m", bottom_labels=False)
+m = CartoFigure(ax=ax1, projection=projection, extent=[-38,20,30,65], resolution="50m", bottom_labels=False)
 ax1.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW100E100_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E100_July_Trajs, variable=varname, levels=levels, cmap=cmap)
@@ -197,7 +197,7 @@ m.plot_trajs(AW100E100_August_Trajs, variable=varname, levels=levels, cmap=cmap)
 ax1.set_title("[A]   CTL", fontsize=20, weight="bold", loc="left")
 
 #W1E0
-m = CartoFigure(ax=ax3, projection=projection, extent=[-40,20,30,65], resolution="50m", bottom_labels=False)
+m = CartoFigure(ax=ax3, projection=projection, extent=[-38,20,30,65], resolution="50m", bottom_labels=False)
 ax3.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW100E0_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E0_July_Trajs, variable=varname, levels=levels, cmap=cmap)
@@ -205,15 +205,16 @@ m.plot_trajs(AW100E0_August_Trajs, variable=varname, levels=levels, cmap=cmap)
 ax3.set_title("[C]   W1E0", fontsize=20, weight="bold", loc="left")
 
 #W1E2
-m = CartoFigure(ax=ax5, projection=projection, extent=[-40,20,30,65], resolution="50m", bottom_labels=False)
+m = CartoFigure(ax=ax5, projection=projection, extent=[-38,20,30,65], resolution="50m",)
 ax5.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW100E200_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E200_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E200_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax5.set_title("[E]   W1E0", fontsize=20, weight="bold", loc="left")
+ax5.set_title("[E]   W1E2", fontsize=20, weight="bold", loc="left")
 
 #W2E1
-m = CartoFigure(ax=ax2, projection=projection, extent=[-40,20,30,65], resolution="50m", bottom_labels=False)
+m = CartoFigure(ax=ax2, projection=projection, extent=[-38,20,30,65], resolution="50m", bottom_labels=False,
+                left_labels=False)
 ax2.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW200E100_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E100_July_Trajs, variable=varname, levels=levels, cmap=cmap)
@@ -221,161 +222,30 @@ m.plot_trajs(AW200E100_August_Trajs, variable=varname, levels=levels, cmap=cmap)
 ax2.set_title("[B]   W2E1", fontsize=20, weight="bold", loc="left")
 
 #W2E0
-m = CartoFigure(ax=ax4, projection=projection, extent=[-40,20,30,65], resolution="50m", bottom_labels=False)
+m = CartoFigure(ax=ax4, projection=projection, extent=[-38,20,30,65], resolution="50m", bottom_labels=False,
+                left_labels=False)
 ax4.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW200E0_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E0_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E0_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax4.set_title("[D]   W2E1", fontsize=20, weight="bold", loc="left")
+ax4.set_title("[D]   W2E0", fontsize=20, weight="bold", loc="left")
 
 #W2E0
-m = CartoFigure(ax=ax6, projection=projection, extent=[-40,20,30,65], resolution="50m", bottom_labels=False)
+m = CartoFigure(ax=ax6, projection=projection, extent=[-38,20,30,65], resolution="50m", left_labels=False)
 ax6.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW200E200_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E200_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E200_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax6.set_title("[D]   W2E1", fontsize=20, weight="bold", loc="left")
+ax6.set_title("[D]   W2E2", fontsize=20, weight="bold", loc="left")
 
 
 cb = plt.colorbar(p, drawedges=True, 
-                  pad=0.15, shrink= 0.50, format= "%.0f", extend= "both", cax=cbar_ax)
+                  pad=0.15, shrink= 0.30, format= "%.0f", extend= "both", cax=cbar_ax)
 cb.set_label("Pressure [hPa]", size=20, fontweight= "bold")
 
-
-
-
-
+#fig.canvas.draw() 
 plt.tight_layout()
 plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-
-
-
-# m = Mapfigure(width=8000000,height=5000000,
-#         resolution='l',projection='laea',\
-#         lat_ts=50,lat_0=52,lon_0=0., ax=ax1)
-# m.drawmap(nbrem=10, nbrep=10) 
-# #m.shadedrelief()
-# m.scatter(lon_1, lat_1, latlon=True, marker=(5, 0), color=("black"),)
-
-# p =m.plot_traj(AW100E100_June_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW100E100_July_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW100E100_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-# cb = m.colorbar(p, drawedges=True, 
-#                   pad=0.15, shrink= 0.50, format= "%.0f", extend= "both",)
-# cb.set_label("Pressure [hPa]", size=20, fontweight= "bold")
-# plt.title("AW100E100")
-# plt.tight_layout()
-# plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-# plt.savefig(os.path.join(path_to_store, loc_1 + "_AW100E100.svg"), format= "svg", bbox_inches="tight", dpi=600)
-
-
-# #AW100E0
-# fig, ax1 = plt.subplots(nrows = 1, ncols = 1, figsize=(20,15))
-
-
-# m = Mapfigure(width=8000000,height=5000000,
-#         resolution='l',projection='laea',\
-#         lat_ts=50,lat_0=52,lon_0=0., ax=ax1)
-# m.drawmap(nbrem=10, nbrep=10) 
-# #m.shadedrelief()
-# m.scatter(lon_1, lat_1, latlon=True, marker=(5, 0), color=("black"),)
-
-# p =m.plot_traj(AW100E0_June_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW100E0_July_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW100E0_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-# cb = m.colorbar(p, drawedges=True, 
-#                   pad=0.15, shrink= 0.50, format= "%.0f", extend= "both",)
-# cb.set_label("Pressure [hPa]", size=20, fontweight= "bold")
-# plt.title("AW100E0")
-# plt.tight_layout()
-# plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-# plt.savefig(os.path.join(path_to_store, loc_1 + "_AW100E0.svg"), format= "svg", bbox_inches="tight", dpi=600)
-
-
-
-# #AW100E200
-# fig, ax1 = plt.subplots(nrows = 1, ncols = 1, figsize=(20,15))
-
-
-# m = Mapfigure(width=8000000,height=5000000,
-#         resolution='l',projection='laea',\
-#         lat_ts=50,lat_0=52,lon_0=0., ax=ax1)
-# m.drawmap(nbrem=10, nbrep=10) 
-# #m.shadedrelief()
-# m.scatter(lon_1, lat_1, latlon=True, marker=(5, 0), color=("black"),)
-
-# p =m.plot_traj(AW100E200_June_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW100E200_July_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW100E200_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-# cb = m.colorbar(p, drawedges=True, 
-#                   pad=0.15, shrink= 0.50, format= "%.0f", extend= "both",)
-# cb.set_label("Pressure [hPa]", size=20, fontweight= "bold")
-# plt.title("AW100E200")
-# plt.tight_layout()
-# plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-# plt.savefig(os.path.join(path_to_store, loc_1 + "_AW100E200.svg"), format= "svg", bbox_inches="tight", dpi=600)
-
-
-# # #AW200E100
-# fig, ax1 = plt.subplots(nrows = 1, ncols = 1, figsize=(20,15))
-# m = Mapfigure(width=8000000,height=5000000,
-#         resolution='l',projection='laea',\
-#         lat_ts=50,lat_0=52,lon_0=0., ax=ax1)
-# m.drawmap(nbrem=10, nbrep=10) 
-# #m.shadedrelief()
-# m.scatter(lon_1, lat_1, latlon=True, marker=(5, 0), color=("black"),)
-
-# p =m.plot_traj(AW200E100_June_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW200E100_July_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW200E100_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-# cb = m.colorbar(p, drawedges=True, 
-#                   pad=0.15, shrink= 0.50, format= "%.0f", extend= "both",)
-# cb.set_label("Pressure [hPa]", size=20, fontweight= "bold")
-# plt.title("AW200E100")
-# plt.tight_layout()
-# plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-# plt.savefig(os.path.join(path_to_store, loc_1 + "_AW200E100.svg"), format= "svg", bbox_inches="tight", dpi=600)
-
-
-# # #AW200E0
-# fig, ax1 = plt.subplots(nrows = 1, ncols = 1, figsize=(20,15))
-# m = Mapfigure(width=8000000,height=5000000,
-#         resolution='l',projection='laea',\
-#         lat_ts=50,lat_0=52,lon_0=0., ax=ax1)
-# m.drawmap(nbrem=10, nbrep=10) 
-# #m.shadedrelief()
-# m.scatter(lon_1, lat_1, latlon=True, marker=(5, 0), color=("black"),)
-
-# p =m.plot_traj(AW200E0_June_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW200E0_July_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW200E0_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-# cb = m.colorbar(p, drawedges=True, 
-#                   pad=0.15, shrink= 0.50, format= "%.0f", extend= "both",)
-# cb.set_label("Pressure [hPa]", size=20, fontweight= "bold")
-# plt.title("AW200E0")
-# plt.tight_layout()
-# plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-# plt.savefig(os.path.join(path_to_store, loc_1 + "_AW200E0.svg"), format= "svg", bbox_inches="tight", dpi=600)
-
-
-# #AW200E200
-# fig, ax1 = plt.subplots(nrows = 1, ncols = 1, figsize=(20,15))
-# m = Mapfigure(width=8000000,height=5000000,
-#         resolution='l',projection='laea',\
-#         lat_ts=50,lat_0=52,lon_0=0., ax=ax1)
-# m.drawmap(nbrem=10, nbrep=10) 
-# #m.shadedrelief()
-# m.scatter(lon_1, lat_1, latlon=True, marker=(5, 0), color=("black"),)
-
-# p =m.plot_traj(AW200E200_June_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW200E200_July_Trajs, variable=varname, levels=levels, cmap=cmap)
-# m.plot_traj(AW200E200_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-# cb = m.colorbar(p, drawedges=True, 
-#                   pad=0.15, shrink= 0.50, format= "%.0f", extend= "both",)
-# cb.set_label("Pressure [hPa]", size=20, fontweight= "bold")
-# plt.title("AW200E200")
-# plt.tight_layout()
-# plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-# plt.savefig(os.path.join(path_to_store, loc_1 + "_AW200E200.svg"), format= "svg", bbox_inches="tight", dpi=600)
+plt.savefig(os.path.join(path_to_store, "fig9.svg"), format= "svg", bbox_inches="tight", dpi=600)
 
 plt.show()                              
