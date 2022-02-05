@@ -23,6 +23,9 @@ from matplotlib.colors import BoundaryNorm
 from matplotlib.pyplot import get_cmap
 from matplotlib.pyplot import subplot
 
+from cartopy.mpl.ticker import (LongitudeFormatter, LatitudeFormatter,
+                                LatitudeLocator)
+
 def plot_trajs(ax, trajs, variable, cmap='Spectral', levels=None, **kwargs):
     """Plot trajectories on axis
 
@@ -184,8 +187,8 @@ class CartoFigure:
     default_extent = [0, 20, 40, 60]
     default_resolution = '50m'
 
-    def __init__(self, ax=None, projection=None, extent=None, resolution=None,
-                 **kwargs):
+    def __init__(self, ax, projection=None, extent=None, resolution=None,
+                 left_labels=True, bottom_labels=True, **kwargs):
         """
 
         Parameters
@@ -208,17 +211,44 @@ class CartoFigure:
         self.projection = projection if projection else self.default_projection
         self.extent = extent if extent else self.default_extent
         self.resolution = resolution if resolution else self.default_resolution
-        if ax:
-            self.ax = plt.axes(ax.get_position(), projection=self.projection,
-                               **kwargs)
-            ax.set_visible(False)
-        else:
-            self.ax = plt.axes(projection=self.projection, **kwargs)
+        self.ax = ax
+        self.bottom_labels = bottom_labels
+        self.left_labels = left_labels
+        # if ax:
+        #     self.ax = plt.axes(ax.get_position(), projection=self.projection,
+        #                         **kwargs)
+        #     ax.set_visible(False)
+        # else:
+        #     self.ax = plt.axes(projection=self.projection, **kwargs)
+        self.ax.set_global()                    # setting global axis 
+        self.ax.coastlines(resolution = "50m")  # add coastlines outlines to the current axis
+        self.ax.add_feature(cfeature.BORDERS, edgecolor="black", linewidth = 0.3) #adding country boarder lines
+        
+        
         if self.extent is not None:
-            self.ax.set_extent(self.extent)
+            self.ax.set_extent(self.extent, self.projection)
+        self.gl= self.ax.gridlines(crs=self.projection, draw_labels=True, linewidth=1, edgecolor="gray", linestyle="--", color="gray", alpha=0.5)
+        
+        self.gl.top_labels =False
+        self.gl.right_labels =False
+        
+        if self.left_labels == True:
+            self.gl.left_labels = True
+        else:
+            self.gl.left_labels = False
+        
+        if self.bottom_labels == True:
+            self.gl.bottom_labels =True
+        else:
+            self.gl.bottom_labels = False
+        
+        self.gl.xformatter = LongitudeFormatter()     # axis formatter
+        self.gl.yformatter = LatitudeFormatter()
+        self.gl.xlabel_style = {"fontsize": 20, "color": "black", "fontweight": "semibold"}   #axis style 
+        self.gl.ylabel_style = {"fontsize": 20, "color": "black", "fontweight": "semibold"}
 
-    def __getattr__(self, item):
-        return getattr(self.ax, item)
+    # def __getattr__(self, item):
+    #     return getattr(self.ax, item)
 
     def __dir__(self):
         return self.ax.__dir__() + ['drawmap', 'plot_trajs']
@@ -232,6 +262,7 @@ class CartoFigure:
                                             self.resolution, edgecolor='gray',
                                             facecolor='none', linewidth=0.5)
         self.ax.add_feature(land)
+    
 
     def plot_trajs(self, trajs, variable='', **kwargs):
         """Plot trajectories on the map"""
