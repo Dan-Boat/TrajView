@@ -28,9 +28,22 @@ exp_name_AW200E100 = "a009"
 exp_name_AW200E0 = "a010"
 exp_name_AW200E200 = "t017"
 
-loc_1 = "Bologna"
-lat_1 = 44.49
-lon_1 = 11.38
+# loc_1 = "Bologna"
+# lat_1 = 44.49
+# lon_1 = 11.38
+
+# loc_1 = "Graz"
+# lat_1 = 47.06
+# lon_1 = 15.44
+
+loc_1 = "Munich"
+lat_1 = 48.14
+lon_1 = 11.53
+
+# loc_1 = "Lyon"
+# lat_1 = 45.81
+# lon_1 = 4.82
+
 varname = "p"
 
 AW100E100_path_june = os.path.join(main_path, exp_name_AW100E100, "June", "Trace", loc_1)
@@ -236,7 +249,7 @@ ax6.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW200E200_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E200_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E200_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax6.set_title("[D]   W2E2", fontsize=20, weight="bold", loc="left")
+ax6.set_title("[F]   W2E2", fontsize=20, weight="bold", loc="left")
 
 
 cb = plt.colorbar(p, drawedges=True, 
@@ -246,6 +259,6 @@ cb.set_label("Pressure [hPa]", size=20, fontweight= "bold")
 #fig.canvas.draw() 
 plt.tight_layout()
 plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-plt.savefig(os.path.join(path_to_store, "fig9.svg"), format= "svg", bbox_inches="tight", dpi=600)
+plt.savefig(os.path.join(path_to_store, "figS12.svg"), format= "svg", bbox_inches="tight", dpi=600)
 
 plt.show()                              
