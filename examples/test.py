@@ -36,13 +36,13 @@ exp_name_AW200E200 = "t017"
 # lat_1 = 47.06
 # lon_1 = 15.44
 
-loc_1 = "Munich"
-lat_1 = 48.14
-lon_1 = 11.53
+# loc_1 = "Munich"
+# lat_1 = 48.14
+# lon_1 = 11.53
 
-# loc_1 = "Lyon"
-# lat_1 = 45.81
-# lon_1 = 4.82
+loc_1 = "Lyon"
+lat_1 = 45.81
+lon_1 = 4.82
 
 varname = "p"
 
@@ -181,8 +181,11 @@ AW200E0_August_Trajs = trajs.concatenate(trajs_add)
 
 
 
+# apply font and style 
 
-plt.rcParams.update({'font.size': 18, "font.weight":"semibold", "lines.markersize":18})
+from package.traj_plot import apply_style
+
+apply_style(fontsize=22, style=None, linewidth=2)
 
 path_to_store = os.path.join("/home/dboateng/Model_output_pst/", "plots")
 
@@ -193,7 +196,7 @@ cbar_pos = [0.90, 0.30, 0.03, 0.45]
 
 
 # #AW100E100
-fig, ((ax1,ax2),(ax3, ax4), (ax5,ax6)) = plt.subplots(nrows = 3, ncols = 2, figsize=(20,18), subplot_kw={"projection": projection})
+fig, ((ax1,ax2),(ax3, ax4), (ax5,ax6)) = plt.subplots(nrows = 3, ncols = 2, figsize=(22,18), subplot_kw={"projection": projection})
 
 cbar_ax = fig.add_axes(cbar_pos)   # axis for subplot colorbar # left, bottom, width, height
 cbar_ax.get_xaxis().set_visible(False)
@@ -207,7 +210,7 @@ ax1.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW100E100_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E100_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E100_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax1.set_title("[A]   CTL", fontsize=20, weight="bold", loc="left")
+ax1.set_title("[A]   CTL", fontsize=22, weight="bold", loc="left")
 
 #W1E0
 m = CartoFigure(ax=ax3, projection=projection, extent=[-38,20,30,65], resolution="50m", bottom_labels=False)
@@ -215,7 +218,7 @@ ax3.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW100E0_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E0_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E0_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax3.set_title("[C]   W1E0", fontsize=20, weight="bold", loc="left")
+ax3.set_title("[C]   W1E0", fontsize=22, weight="bold", loc="left")
 
 #W1E2
 m = CartoFigure(ax=ax5, projection=projection, extent=[-38,20,30,65], resolution="50m",)
@@ -223,7 +226,7 @@ ax5.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW100E200_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E200_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW100E200_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax5.set_title("[E]   W1E2", fontsize=20, weight="bold", loc="left")
+ax5.set_title("[E]   W1E2", fontsize=22, weight="bold", loc="left")
 
 #W2E1
 m = CartoFigure(ax=ax2, projection=projection, extent=[-38,20,30,65], resolution="50m", bottom_labels=False,
@@ -232,7 +235,7 @@ ax2.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW200E100_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E100_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E100_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax2.set_title("[B]   W2E1", fontsize=20, weight="bold", loc="left")
+ax2.set_title("[B]   W2E1", fontsize=22, weight="bold", loc="left")
 
 #W2E0
 m = CartoFigure(ax=ax4, projection=projection, extent=[-38,20,30,65], resolution="50m", bottom_labels=False,
@@ -241,7 +244,7 @@ ax4.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW200E0_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E0_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E0_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax4.set_title("[D]   W2E0", fontsize=20, weight="bold", loc="left")
+ax4.set_title("[D]   W2E0", fontsize=22, weight="bold", loc="left")
 
 #W2E0
 m = CartoFigure(ax=ax6, projection=projection, extent=[-38,20,30,65], resolution="50m", left_labels=False)
@@ -249,16 +252,16 @@ ax6.scatter(lon_1, lat_1, marker=(5, 0), color=("black"),)
 p =m.plot_trajs(AW200E200_June_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E200_July_Trajs, variable=varname, levels=levels, cmap=cmap)
 m.plot_trajs(AW200E200_August_Trajs, variable=varname, levels=levels, cmap=cmap)
-ax6.set_title("[F]   W2E2", fontsize=20, weight="bold", loc="left")
+ax6.set_title("[F]   W2E2", fontsize=22, weight="bold", loc="left")
 
 
 cb = plt.colorbar(p, drawedges=True, 
-                  pad=0.15, shrink= 0.30, format= "%.0f", extend= "both", cax=cbar_ax)
-cb.set_label("Pressure [hPa]", size=20, fontweight= "bold")
+                  pad=0.10, shrink= 0.30, format= "%.0f", extend= "both", cax=cbar_ax)
+cb.set_label("Pressure [hPa]", size=22, fontweight= "bold")
 
 #fig.canvas.draw() 
 plt.tight_layout()
 plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-plt.savefig(os.path.join(path_to_store, "figS12.svg"), format= "svg", bbox_inches="tight", dpi=600)
+plt.savefig(os.path.join(path_to_store, "figS11.svg"), format= "svg", bbox_inches="tight", dpi=300)
 
 plt.show()                              
