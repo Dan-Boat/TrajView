@@ -14,6 +14,9 @@ from datetime import datetime, timedelta
 from mpl_toolkits.basemap import Basemap
 
 import matplotlib.pyplot as plt
+from matplotlib import rc
+import matplotlib as mpl
+
 import numpy as np
 from cartopy import crs as ccrs
 from cartopy import feature as cfeature
@@ -25,6 +28,32 @@ from matplotlib.pyplot import subplot
 
 from cartopy.mpl.ticker import (LongitudeFormatter, LatitudeFormatter,
                                 LatitudeLocator)
+
+def apply_style(fontsize=20, style=None, linewidth=2):
+    """
+    
+    Parameters
+    ----------
+    fontsize : TYPE, optional
+        DESCRIPTION. The default is 10.
+    style : TYPE, optional
+        DESCRIPTION. The default is "bmh". ["seaborn", "fivethirtyeight",]
+    Returns
+    -------
+    None.
+    """
+    if style is not None:
+        plt.style.use(style)  
+        
+    rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
+    mpl.rc('text', usetex=True)
+    mpl.rc('xtick', labelsize=fontsize)
+    mpl.rc('ytick', labelsize=fontsize)
+    mpl.rc('legend', fontsize=fontsize)
+    mpl.rc('axes', labelsize=fontsize)
+    mpl.rc('lines', linewidth=linewidth)
+    mpl.rc("font", weight="bold")
+
 
 def plot_trajs(ax, trajs, variable, cmap='Spectral', levels=None, **kwargs):
     """Plot trajectories on axis
@@ -244,8 +273,8 @@ class CartoFigure:
         
         self.gl.xformatter = LongitudeFormatter()     # axis formatter
         self.gl.yformatter = LatitudeFormatter()
-        self.gl.xlabel_style = {"fontsize": 20, "color": "black", "fontweight": "semibold"}   #axis style 
-        self.gl.ylabel_style = {"fontsize": 20, "color": "black", "fontweight": "semibold"}
+        self.gl.xlabel_style = {"fontsize": 22, "color": "black", "fontweight": "semibold"}   #axis style 
+        self.gl.ylabel_style = {"fontsize": 22, "color": "black", "fontweight": "semibold"}
 
     # def __getattr__(self, item):
     #     return getattr(self.ax, item)
