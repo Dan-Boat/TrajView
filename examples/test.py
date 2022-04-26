@@ -36,13 +36,13 @@ exp_name_AW200E200 = "t017"
 # lat_1 = 47.06
 # lon_1 = 15.44
 
-# loc_1 = "Munich"
-# lat_1 = 48.14
-# lon_1 = 11.53
+loc_1 = "Munich"
+lat_1 = 48.14
+lon_1 = 11.53
 
-loc_1 = "Lyon"
-lat_1 = 45.81
-lon_1 = 4.82
+# loc_1 = "Lyon"
+# lat_1 = 45.81
+# lon_1 = 4.82
 
 varname = "p"
 
@@ -262,6 +262,17 @@ cb.set_label("Pressure [hPa]", size=22, fontweight= "bold")
 #fig.canvas.draw() 
 plt.tight_layout()
 plt.subplots_adjust(left=0.05, right=0.89, top=0.94, bottom=0.06)
-plt.savefig(os.path.join(path_to_store, "figS11.svg"), format= "svg", bbox_inches="tight", dpi=300)
 
-plt.show()                              
+# plt.savefig(os.path.join(path_to_store, "figS11.svg"), format= "svg", bbox_inches="tight", dpi=300)
+# plt.savefig(os.path.join(path_to_store, "figS11.png"), format= "png", bbox_inches="tight", dpi=300)
+
+plt.savefig(os.path.join(path_to_store, "figS12.svg"), format= "svg", bbox_inches="tight", dpi=300)
+plt.savefig(os.path.join(path_to_store, "figS12.png"), format= "png", bbox_inches="tight", dpi=300)
+
+# plt.savefig(os.path.join(path_to_store, "fig8.svg"), format= "svg", bbox_inches="tight", dpi=300)
+# plt.savefig(os.path.join(path_to_store, "fig8.png"), format= "png", bbox_inches="tight", dpi=300)
+
+# plt.savefig(os.path.join(path_to_store, "fig9.svg"), format= "svg", bbox_inches="tight", dpi=300)
+# plt.savefig(os.path.join(path_to_store, "fig9.png"), format= "png", bbox_inches="tight", dpi=300)
+
+                          
